@@ -1,0 +1,112 @@
+
+                                    Introducción
+
+Estudiante: Samuel Eduardo Perez Cotom .
+Proyecto: Sistema de Gestión de Biblioteca.
+
+Este sistema está diseñado para gestionar libros, préstamos y usuarios de una biblioteca.
+Se utilizaron bases de datos no relacionales como MySQL  para manejar la información estructurada,
+como los préstamos, y MongoDB para almacenar datos de libros que requieren una estructura más flexible.
+Además, implementamos seguridad mediante JWT para proteger las operaciones y pruebas unitarias para asegurar
+el correcto funcionamiento del sistema.
+
+
+
+                                   Demostración del Código
+
+Controladores REST:
+BookController: Gestiona las operaciones CRUD para los libros. Los métodos permiten agregar, obtener,
+actualizar y eliminar libros en la base de datos MongoDB.
+
+LoanController: Maneja los préstamos, que se almacenan en MySQL. Permite realizar operaciones CRUD sobre
+los registros de préstamos.
+
+UserController: Controla las operaciones CRUD para los usuarios del sistema, almacenados en MySQL.
+Lógica de Negocio y Base de Datos:
+
+Modelos:
+Book: Representa un libro con atributos como id, title, author e isbn. Se utiliza con MongoDB.
+Loan: Representa un préstamo con atributos como id, bookId, userId, loanDate, y returnDate. Se usa con MySQL.
+User: Representa un usuario con atributos id, username, y password. También se almacena en MySQL.
+
+Repositorios:
+BookRepository: Interfaz para manejar operaciones CRUD en MongoDB.
+LoanRepository y UserRepository: Interfaces para manejar operaciones CRUD en MySQL.
+
+Implementación de Seguridad con JWT:
+Implementamos JWT (JSON Web Tokens) para autenticar y autorizar a los usuarios.
+Los tokens aseguran que solo los usuarios autorizados puedan realizar operaciones críticas en el sistema.
+Pruebas Unitarias:
+
+Se realizaron pruebas unitarias para asegurar que cada componente del sistema funcione correctamente y maneje
+los datos según lo esperado. Las pruebas cubren los controladores, repositorios y servicios.
+
+Seguridad y Pruebas:
+Aunque la implementación actual no incluye seguridad con JWT o pruebas unitarias detalladas,
+estos son componentes importantes que se pueden agregar para mejorar la seguridad y la confiabilidad del sistema
+en una fase futura.
+
+
+                                Ejecución y Demostración de Funcionalidades
+
+
+Inicio del Sistema: Muestra cómo se inicia la aplicación y cómo se conecta a las bases de datos MySQL y MongoDB.
+
+Demostración de CRUD:
+
+Crear un Libro: Demuestra cómo se agrega un libro a la base de datos MongoDB mediante el endpoint POST /books.
+
+Leer Libros: Muestra cómo se obtienen todos los libros con el endpoint GET /books.
+
+Actualizar un Libro: Demuestra la actualización de un libro existente.
+
+Eliminar un Libro: Muestra cómo se elimina un libro de la base de datos.
+
+Operaciones de Préstamos y Usuarios:
+Realiza operaciones similares para los préstamos y usuarios, mostrando la persistencia de datos en MySQL.
+
+Integración del Sistema:
+Muestra cómo las diferentes partes del código interactúan entre sí, desde la entrada del usuario hasta la
+persistencia de datos y la respuesta del sistema.
+
+
+Configuración de Gradle para el proyecto:
+
+1. Plugins
+id 'java': Aplica el plugin de Java, lo que permite compilar código Java y manejar dependencias específicas de Java.
+id 'org.springframework.boot' version '3.3.3-SNAPSHOT': Aplica el plugin de Spring Boot, que facilita la creación y ejecución de aplicaciones Spring Boot. La versión 3.3.3-SNAPSHOT indica que estás usando una versión en desarrollo de Spring Boot.
+id 'io.spring.dependency-management' version '1.1.6': Aplica el plugin de gestión de dependencias de Spring, que ayuda a manejar y asegurar la versión de las dependencias utilizadas en el proyecto.
+2. Group y Version
+group: Define el grupo de artefacto en Maven/Gradle. En este caso, es com.ejemplo.biblioteca.
+version: Especifica la versión del artefacto, que en este caso es 0.0.1-SNAPSHOT. SNAPSHOT indica que esta es una versión en desarrollo que puede cambiar.
+3. Java Toolchain
+Configura la versión del JDK que se utilizará para compilar y ejecutar el proyecto. En este caso, se especifica que se usará Java 17.
+4. Repositories
+mavenCentral(): Configura el repositorio central de Maven, donde Gradle buscará las dependencias.
+maven { url 'https://repo.spring.io/snapshot' }: Añade el repositorio de snapshots de Spring, donde se pueden encontrar versiones en desarrollo de los artefactos de Spring Boot.
+5. Dependencies
+implementation 'org.springframework.boot:spring-boot-starter-data-jpa': Añade soporte para la persistencia con JPA (Java Persistence API) usando Spring Data JPA.
+implementation 'org.springframework.boot:spring-boot-starter-data-mongodb': Añade soporte para la persistencia con MongoDB usando Spring Data MongoDB.
+implementation 'org.springframework.boot:spring-boot-starter-security': Añade soporte para la seguridad en aplicaciones Spring Boot.
+implementation 'org.springframework.boot:spring-boot-starter-web': Añade soporte para aplicaciones web y RESTful con Spring MVC.
+implementation 'mysql:mysql-connector-java:8.0.34': Proporciona el conector JDBC para MySQL, permitiendo que la aplicación se conecte a una base de datos MySQL.
+runtimeOnly 'com.h2database:h2': Incluye H2 como base de datos en memoria para pruebas.
+testImplementation 'org.springframework.boot:spring-boot-starter-test': Añade las herramientas necesarias para pruebas unitarias y de integración en Spring Boot.
+testImplementation 'org.springframework.security:spring-security-test': Añade herramientas para probar la seguridad de las aplicaciones Spring.
+testRuntimeOnly 'org.junit.platform:junit-platform-launcher': Incluye el lanzador de pruebas de JUnit Platform, necesario para ejecutar pruebas con JUnit 5.
+6. Configuración de Tareas de Prueba
+Configura la tarea test para que use JUnit Platform, que es necesario para ejecutar pruebas con JUnit 5 y otras plataformas de prueba que lo soportan.
+Objetivo General
+La configuración de Gradle está diseñado para configurar el proyecto de Spring Boot con soporte para bases de datos tanto SQL (MySQL) como NoSQL (MongoDB),
+seguridad, y pruebas. Establece las versiones necesarias, las dependencias principales y las herramientas para el desarrollo y pruebas del proyecto. Es una configuración
+típica para una aplicación Spring Boot moderna que necesita integrarse con diferentes tecnologías de bases de datos y proporcionar características de seguridad y pruebas.
+
+
+
+
+"Quisiera disculparme por no poder suvir el video, devio al tiempo y las dificultades
+que he atravesado, por ello he hecho este documento para poder explicar el codigo
+sin embargo espero puedan aceptar el proyecto."
+
+
+
